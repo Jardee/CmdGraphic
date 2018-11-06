@@ -2,6 +2,7 @@
 
 namespace CmdGraphicLibrary
 {
+
     public class CmdGraphic
     {
         #region Variables
@@ -22,7 +23,11 @@ namespace CmdGraphicLibrary
         {
             Buffer = new char[_width, _height];
         }
-
+        /// <summary>
+        /// Set other than default height and width
+        /// </summary>
+        /// <param name="height">Height of the canvas</param>
+        /// <param name="width">Width of the canvas</param>
         public CmdGraphic(int height, int width)
         {
             _height = height;
@@ -33,7 +38,10 @@ namespace CmdGraphicLibrary
         #endregion
 
         #region DrawingOnBuffer
-        
+        /// <summary>
+        /// Fill whole canvas with specified character
+        /// </summary>
+        /// <param name="fillChar">Char which should fill whole canvas</param>
         public void Fill(char fillChar)
         {
             for (int i = 0; i < _height; i++)
@@ -44,32 +52,63 @@ namespace CmdGraphicLibrary
                 }
             }
         }
+        /// <summary>
+        /// Draws vertical Line on buffer
+        /// </summary>
+        /// <param name="x">X coordinates</param>
+        /// <param name="y">Y coordinates</param>
+        /// <param name="length">Length of the line</param>
+        /// <param name="Char">Char to print</param>
+        public void DrawVerticalLine(int x, int y, int length, char Char)
+        {
+            for (int i = 0; i < length; i++)
+            {
+                DrawCharAt(x, y + i, Char);
+            }
+        }
+        /// <summary>
+        /// Draws horizontal Line on buffer
+        /// </summary>
+        /// <param name="x">X coordinates</param>
+        /// <param name="y">Y coordinates</param>
+        /// <param name="length">Length of the line</param>
+        /// <param name="Char">Char to print</param>
+        public void DrawHorizontalLine(int x, int y, int length, char Char)
+        {
+            for (int i = 0; i < length; i++)
+            {
+                DrawCharAt(x + i, y, Char);
+            }
 
-        public void DrawVerticalLine(int x, int y, int length)
+        }
+
+        public void DrawLine(int x, int y, char Char)
+        {
+            //TO-DO Bresenham's line algorithm
+            throw new NotImplementedException();
+        }
+
+        public void DrawCircle(int x, int y, int r, char Char)
+        {
+            //TO-DO Midpoint circle algorithm
+            throw new NotImplementedException();
+        }
+
+        public void DrawRect(int x, int y, int sizex, int sizey, char Char)
         {
             throw new NotImplementedException();
         }
 
-        public void DrawHorizontalLine(int x, int y, int length)
+        public void DrawFilledRect(int x, int y, int sizex, int sizey, char Char, char fillChar)
         {
             throw new NotImplementedException();
         }
-
-        public void DrawLine(int x, int y)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DrawCircle(int x, int y, int r)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DrawRect(int x, int y, int sizex, int sizey)
-        {
-            throw new NotImplementedException();
-        }
-
+        /// <summary>
+        /// Draws string horizontally on screen
+        /// </summary>
+        /// <param name="x">X coordinates</param>
+        /// <param name="y">Y coordinates</param>
+        /// <param name="text">Text to draw</param>
         public void DrawTextHorizontally(int x, int y, string text)
         {
             char[] charArrayText = text.ToCharArray();
@@ -84,7 +123,12 @@ namespace CmdGraphicLibrary
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// Draw one char at specified X Y
+        /// </summary>
+        /// <param name="x">X coordinates</param>
+        /// <param name="y">Y coordinates</param>
+        /// <param name="Char">Char to print</param>
         public void DrawCharAt(int x, int y, char Char)
         {
             if ((y < _height && y >= 0) && (x < _width && x >= 0))
@@ -93,6 +137,10 @@ namespace CmdGraphicLibrary
 
         #endregion
 
+        /// <summary>
+        /// Gets already processed "Canvas"
+        /// </summary>
+        /// <returns>Returns string to draw on screen</returns>
         public String GetBuffer()
         {
             string builder = "";

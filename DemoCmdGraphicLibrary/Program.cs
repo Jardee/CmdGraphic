@@ -10,6 +10,8 @@ namespace DemoCmdGraphicLibrary
         public int y;
     }
 
+
+    /* Simple demo of CmdGraphic lib */
     class Program
     {
         static void Main(string[] args)
@@ -46,16 +48,17 @@ namespace DemoCmdGraphicLibrary
                     }
                 }
 
-                //x.Fill(' ');
-
+                x.Fill(' ');
+                
                 foreach (var cords in chars)
                 {
                       x.DrawCharAt(cords.x, cords.y, '*');  
                 }
 
-                x.DrawCharAt(cursorx, cursory, '^');
+                x.DrawCharAt(cursorx, cursory, '+');
                 x.DrawTextHorizontally(0, 0, "X: " + cursorx + " Y:" + cursory);
-
+                x.DrawHorizontalLine(0, 1, 41, '-');
+                x.DrawVerticalLine(10, 10, 5, '|');
                 Console.SetCursorPosition(0, 0);
                 Console.Write(x.GetBuffer());
             }
